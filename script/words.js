@@ -138,3 +138,21 @@ const displayWordCard = (words) =>{
 
 
 lessonBtn();
+
+document.getElementById("search-btn").addEventListener('click',() =>{
+ 
+ const input = document.getElementById("search-input");
+ const inputValue = input.value.trim().toLowerCase();
+
+ fetch("https://openapi.programming-hero.com/api/words/all")
+ .then((res)=>res.json())
+ .then((data)=>{
+
+    const allWords = data.data;
+    const filterWord = allWords.filter((word)=>{
+       return word.word.toLowerCase().includes(inputValue)
+    });
+    displayWordCard(filterWord);
+ })
+
+})
