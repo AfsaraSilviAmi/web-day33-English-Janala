@@ -3,6 +3,13 @@ const createElement = (arr)=>{
     let htmlElement = arr.map((el) =>` <span class="bg-blue-200 p-2 rounded-lg">${el}</span>` );
     return htmlElement.join(" ");
 }
+//word sound 
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
 
 //function for spinner
 const manageSpinner = (status) =>{
@@ -125,7 +132,7 @@ const displayWordCard = (words) =>{
                 <h2 class="font-semibold text-2xl text-gray-800 font-bangla">"${word.meaning? word.meaning:"Meaning not found"} / ${word.pronunciation? word.pronunciation: "Pronunciation not found"}"</h2>
                 <div class="flex justify-between">
                     <button onclick = "loadWordDetail(${word.id})" class="btn bg-[#1A91FF20] wordDetail"><i class="fa-solid fa-circle-info"></i></button>
-                    <button class="btn bg-[#1A91FF20]"> <i class="fa-solid fa-volume-high"></i></button>
+                    <button onclick = "pronounceWord('${word.word}')" class="btn bg-[#1A91FF20]"> <i class="fa-solid fa-volume-high"></i></button>
                    
                 </div>
             </div>
