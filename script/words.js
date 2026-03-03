@@ -1,3 +1,8 @@
+const createElement = (arr)=>{
+    let htmlElement = arr.map((el) =>` <span class="bg-blue-200 p-2 rounded-lg">${el}</span>` );
+    return htmlElement.join(" ");
+}
+
 const lessonBtn = () =>{
     let url = "https://openapi.programming-hero.com/api/levels/all";
     fetch(url)
@@ -59,9 +64,9 @@ const displayWordDetail = (word) =>{
        </div>
        <div class=mb-5>
         <p class="font-semibold text-lg mb-4">সমার্থক শব্দ গুলো</p>
-        <span class="bg-blue-200 p-2 rounded-lg">Enthusiastic</span>
-        <span class="bg-blue-200 p-2 rounded-lg">Enthusiastic</span>
-        <span class="bg-blue-200 p-2 rounded-lg">Enthusiastic</span>
+         <div>
+          ${word.synonyms ? createElement(word.synonyms): "No Synonyms are found"}
+         <div>
        </div>
        </div>
     `;
