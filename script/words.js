@@ -1,6 +1,20 @@
+//function for synonyms
 const createElement = (arr)=>{
     let htmlElement = arr.map((el) =>` <span class="bg-blue-200 p-2 rounded-lg">${el}</span>` );
     return htmlElement.join(" ");
+}
+
+//function for spinner
+const manageSpinner = (status) =>{
+    if(status==true){
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    }
+    else{
+         document.getElementById("word-container").classList.remove("hidden");
+         document.getElementById("spinner").classList.add("hidden");
+         
+    }
 }
 
 const lessonBtn = () =>{
@@ -24,6 +38,7 @@ const removeActive = () =>{
     });
 }
 const loadWordCard = (id) =>{
+    manageSpinner(true);
     let url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
     .then((respond)=>respond.json())
@@ -118,6 +133,7 @@ const displayWordCard = (words) =>{
     cardDiv.append(card);
 
     });
+    manageSpinner(false);
 }
 
 
